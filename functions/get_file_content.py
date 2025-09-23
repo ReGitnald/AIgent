@@ -26,8 +26,9 @@ def write_file(working_directory, file_path, content):
     combo_path = os.path.join(working_directory,file_path)
     full_path = os.path.abspath(combo_path)
     if os.path.abspath(combo_path).startswith(os.path.abspath(working_directory)):
-        if not os.path.isfile(full_path):
-            os.makedirs(full_path)
+        if not os.path.exists(os.path.split(full_path)[0]):
+            print(os.path.split(full_path)[0])
+            os.makedirs(os.path.split(full_path)[0])
         try:
             with open(full_path, "w") as f:
                 f.write(content) 
